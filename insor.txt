@@ -1,0 +1,45 @@
+#include "sort.h"
+
+/**
+ * insertion_sort_list - sort linked list by insertion method.
+ *
+ * @list: list to sort
+ */
+void insertion_sort_list(listint_t **list)
+{
+	listint_t *tmp, *rev, *bptr;
+
+	tmp = *list;
+	while (tmp->prev)
+		tmp = tmp->prev;
+	while (tmp->next)
+	{
+		if (tmp->n > tmp->next->n)
+		{
+			bptr = tmp->next;
+			tmp->next->prev = tmp->prev;
+			if (tmp->next->next)
+				tmp->next->next->prev = tmp;
+			if (tmp->prev)
+				tmp->prev->next = tmp->next;
+			tmp->next = tmp->next->next;
+			tmp->prev = bptr;
+			bptr->next = tmp;
+			print_list(*list);
+			/**while (bptr->prev)
+			{
+				if (bptr->prev->n  > bptr->n)
+				{
+					bptr->prev->next = bptr->prev->next->next;
+					rev->next = bptr->next;
+					bptr->next = rev;
+					rev->next->prev = rev;
+					rev->prev = bptr;
+					print_list(*list);
+				}
+				bptr = bptr->prev;
+			}**/
+		}
+		tmp = tmp->next;
+	}
+}
