@@ -1,5 +1,15 @@
 #include "sort.h"
 
+void qsort(int *array, int init, int final, size_t size)
+{
+	size_t idx;
+
+	if (init < final)
+	{
+		idx = 
+	} 
+
+}
 /**
  * quick_sort - quick sort
  *
@@ -10,26 +20,27 @@ void quick_sort(int *array, size_t size)
 {
 	size_t flag = 0, idx = 0, low = 0;
 
-	if (flag == 0) /*flag not set*/
+	if (low < size)
 	{
-		idx = partition(array, low, size);
-		flag = 1; /*set flag*/
-	}
-	else
-	{
-		if (size > idx)
+		if (flag == 0) /*flag not set*/
 		{
-			low = idx + 1;
 			idx = partition(array, low, size);
+			flag = 1; /*set flag*/
 		}
 		else
 		{
-			low = 0;
-			idx = partition(array, low, size);
+			if (size > idx)
+			{
+				low = idx + 1;
+				idx = partition(array, low, size);
+			}
+			else
+			{
+				low = 0;
+				idx = partition(array, low, size);
+			}
 		}
-	}
-	if (low < size)
-	{
+
 		quick_sort(array, idx);
 		quick_sort(array, size);
 	}
