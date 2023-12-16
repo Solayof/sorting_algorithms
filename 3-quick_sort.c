@@ -8,9 +8,9 @@
 *@final: highest index in partition array
 *@size: size of original array.
 */
-void _qsort(int *array, size_t init, size_t final, size_t size)
+void _qsort(int *array, int init, int final, int size)
 {
-	size_t idx;
+	int idx;
 
 	if (init < final)
 	{
@@ -59,20 +59,27 @@ void swap(int *a, int *b)
  *@size: array size
  * Return: position of the pivoted.
  */
-int partition(int *array, size_t low, size_t high, size_t size)
+int partition(int *array, int low, int high, int size)
 {
-	size_t i = low - 1, j;
+	int i = low, j;
+	int p = array[high];
 
-	for (j = low; j < high - 1; j++)
+	for (j = low; j < high; j++)
 	{
-		if (array[j] < array[high])
+		if (array[j] < p)
 		{
+			if (i != j)
+			{
+				swap(&array[i], &array[j]);
+				print_array(array, size);
+			}
 			i++;
-			swap(&array[i], &array[j]);
-			print_array(array, size);
 		}
 	}
-	swap(&array[i + 1], &array[high]);
-	print_array(array, size);
-		return (i + 1);
+	if (i != high)
+	{
+		swap(&array[i], &array[high]);
+		print_array(array, size);
+	}
+		return (i);
 }
