@@ -29,6 +29,7 @@ void insertion_sort_list(listint_t **list)
 			nnode->prev = pnode;
 
 
+
 			print_list(*list);
 			while (nnode->prev)
 			{
@@ -43,6 +44,14 @@ void insertion_sort_list(listint_t **list)
 					if (pnode->next)
 						pnode->next->prev = pnode;
 					nnode->next = pnode;
+
+					if (nnode->prev)
+						*list = nnode->prev;
+					else
+						*list = nnode;
+
+					while ((*list)->prev)
+						*list = (*list)->prev;
 
 					print_list(*list);
 				}
