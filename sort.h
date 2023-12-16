@@ -28,6 +28,8 @@ void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
 void quick_sort(int *array, size_t size);
 void swap(int *a, int *b);
-int partition(int *array, size_t low, size_t high);
+int partition(int *array, size_t low, size_t high, size_t size);
+void _qsort(int *array, size_t init, size_t final, size_t size);
+
 
 #endif

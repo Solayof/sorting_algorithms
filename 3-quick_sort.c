@@ -1,15 +1,27 @@
 #include "sort.h"
 
-void qsort(int *array, int init, int final, size_t size)
+/**
+* _qsort - sort an array by placing the pivoted index in its right index
+*
+*@array: array to sort
+*@init: lowest index in partition array
+*@final: highest index in partition array
+*@size: size of original array.
+*/
+void _qsort(int *array, size_t init, size_t final, size_t size)
 {
 	size_t idx;
 
 	if (init < final)
 	{
-		idx = 
-	} 
+		idx = partition(array, init, final, size);
+		_qsort(array, init, idx - 1, size);
+		_qsort(array, idx + 1, final, size);
+	}
 
 }
+
+
 /**
  * quick_sort - quick sort
  *
@@ -18,32 +30,9 @@ void qsort(int *array, int init, int final, size_t size)
  */
 void quick_sort(int *array, size_t size)
 {
-	size_t flag = 0, idx = 0, low = 0;
-
-	if (low < size)
-	{
-		if (flag == 0) /*flag not set*/
-		{
-			idx = partition(array, low, size);
-			flag = 1; /*set flag*/
-		}
-		else
-		{
-			if (size > idx)
-			{
-				low = idx + 1;
-				idx = partition(array, low, size);
-			}
-			else
-			{
-				low = 0;
-				idx = partition(array, low, size);
-			}
-		}
-
-		quick_sort(array, idx);
-		quick_sort(array, size);
-	}
+	if (!array || size < 2)
+		return;
+	_qsort(array, 0, size - 1, size);
 }
 
 /**
@@ -67,9 +56,10 @@ void swap(int *a, int *b)
  * @array: array to sort.
  * @low: lowest index in the array to sort.
  * @high: highest index in the array to sort.
+ *@size: array size
  * Return: position of the pivoted.
  */
-int partition(int *array, size_t low, size_t high)
+int partition(int *array, size_t low, size_t high, size_t size)
 {
 	size_t i = low - 1, j;
 
@@ -79,8 +69,10 @@ int partition(int *array, size_t low, size_t high)
 		{
 			i++;
 			swap(&array[i], &array[j]);
+			print_array(array, size);
 		}
 	}
 	swap(&array[i + 1], &array[high]);
+	print_array(array, size);
 		return (i + 1);
 }
