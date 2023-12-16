@@ -9,15 +9,16 @@
 
 void bubble_sort(int *array, size_t size)
 {
-	int tmp, flag;
-	size_t j, sort = size;
+	int tmp, flag = 1;
+	size_t j;
 
-	if (array == NUll || size < 2)
+	if (!array || size > 2)
 		return;
-	while (sort)
+
+	while (flag)
 	{
 		flag = 0;
-		for (j = 0; j < sort - 1; j++)
+		for (j = 0; j < size ; j++)
 		{
 			if (array[j] > array[j + 1])
 			{
@@ -28,8 +29,5 @@ void bubble_sort(int *array, size_t size)
 				flag = 1;
 			}
 		}
-		sort--;
-		if (!flag)
-			break;
 	}
 }
