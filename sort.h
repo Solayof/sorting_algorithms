@@ -31,6 +31,7 @@ void swap(int *a, int *b);
 int partition(int *array, int low, int high, int size);
 void _qsort(int *array, int init, int final, int size);
 void shell_sort(int *array, size_t size);
+void cocktail_sort_list(listint_t **list);
 
 
 #endif
